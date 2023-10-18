@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <style>
+      body{font-size:100%;}
+    </style>
+    <style>
+      /*! CSS Used from: Embedded */
+          html{background-color:#111;font-family:Roboto;}
+          .header{text-align:center;margin-top:20px;margin-bottom:20px;}
+          .header .title{font-size:50px;color:white;font-weight:400;}
+          .header .description{font-size:20px;color:white;font-weight:lighter;margin-top:10px;margin-bottom:10px;}
+          .header img{width:500px;max-width:80%;}
+          .plugins{text-align:center;}
+          .plugin{display:inline-block;width:320px;background-color:#222;margin:10px;vertical-align:top;}
+          .plugin .qr{width:250px;height:250px;margin-top:20px;border-radius:10px;#border:10px solid #EEE;}
+          .plugin .meta{color:white;padding-bottom:20px;padding-top:20px;}
+          .plugin .meta .title .icon{height:30px;margin-bottom:-5px;}
+          .plugin .meta .title{font-size:30px;margin-bottom:10px;}
+          .plugin .meta .description{font-size:20px;font-weight:lighter;margin-bottom:10px;}
+          .plugin .meta .buttonOpen{font-size:25px;background-color:#2961F2;border-radius:6px;padding:10px;margin-left:20px;margin-right:20px;margin-top:13px;}
+          .buttonOpenLink{color:inherit;text-decoration:inherit;}
+          /*! CSS Used fontfaces */
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxFIzIFKw.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxMIzIFKw.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxEIzIFKw.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxLIzIFKw.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxHIzIFKw.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxGIzIFKw.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:100;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxIIzI.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCRc4EsA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fABc4EsA.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBxc4EsA.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fCxc4EsA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfCRc4EsA.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfABc4EsA.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfCBc4EsA.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfBxc4EsA.woff2) format('woff2');unicode-range:U+0370-03FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfCxc4EsA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2) format('woff2');unicode-range:U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+          @font-face{font-family:'Roboto';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfBBc4.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+    </style>
+  </head>
+  <body>
+    <div id="app" data-v-app="">
+      <div class="header">
+        <a href="https://grayjay.app"
+          ><img src="https://grayjay.app/images/Group-1_1-p-500.png"
+        /></a>
+        <div class="title">Plugins</div>
+        <div class="description">
+          These are plugins that can be installed into the Grayjay app. It gives
+          access to their respective platform. <br />
+          You can either scan the QRs using the in-app scanner via the Sources
+          page, or click the Open in Grayjay button in your phone browser.
+        </div>
+      </div>
+      <div class="plugins">
+
+        <div class="plugin">
+          <img
+            class="qr"
+            src="data:image/png;base64,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"
+          />
+          <div class="meta">
+            <div class="title">
+              <img
+                class="icon"
+                src="https://dw5.github.io/grayjay-Vanillo/vanillo192.png"
+              />
+              Vanillo
+            </div>
+            <div class="description">
+              CosmicMedia LLC
+            </div>
+            <a
+              class="buttonOpenLink"
+              href="grayjay://plugin/https://dw5.github.io/grayjay-Vanillo/VanilloConfig.json"
+              ><div class="buttonOpen">Open in Grayjay</div></a
+            >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

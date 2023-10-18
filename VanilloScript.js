@@ -8,7 +8,11 @@ source.enable = function(conf, settings, savedState){
 	throw new ScriptException("This is a sample");
 }
 source.getHome = function() {
-	return new ContentPager([], false);
+	//return new ContentPager([], false);
+	//function getVideoPager(path, params, page) {
+	return getVideoPager('/v1/videos/recommended', {
+		limit: "30"
+	}, 0);
 };
 
 source.searchSuggestions = function(query) {
@@ -66,5 +70,48 @@ source.getComments = function (url) {
 source.getSubComments = function (comment) {
 	throw new ScriptException("This is a sample");
 }
+
+
+
+/* json reader */
+function getVideoPager(path, params, page) {
+	log(`getVideoPager page=${page}`, params);
+  
+	const count = 20;
+	const start = (page ?? 0) * count;
+	params = { ...params, start, count };
+  
+	const url = `${plugin.config.constants.baseUrl}${path}`;
+	const urlWithParams = `${url}${buildQuery(params)}`;
+	log("GET " + urlWithParams);
+	const res = http.GET(urlWithParams, {});
+  
+	if (res.code !== 200) {
+	  log("Failed to get videos", res);
+	  return new VideoPager([], false);
+	}
+  
+	const obj = JSON.parse(res.body);
+  
+	const platformVideos = obj.data.map((v) => ({
+	  id: new PlatformID(PLATFORM, v.id, config.id),
+	  name: v.title || "",
+	  thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
+	  author: new PlatformAuthorLink(
+		new PlatformID(PLATFORM, v.uploader.url, config.id),
+		v.uploader.displayName,
+		v.uploader.url,
+		v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
+	  ),
+	  datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
+	  duration: v.duration,
+	  viewCount: v.views,
+	  url: v.id,
+	  isLive: v.live,
+	}));
+  
+	return new VideoPager(platformVideos, true);
+  }
+
 
 log("LOADED");
