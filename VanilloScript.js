@@ -5,7 +5,7 @@ var config = {};
 //Source Methods
 source.enable = function(conf, settings, savedState){
 	config = conf ?? {};
-	throw new ScriptException("This is a sample");
+	//throw new ScriptException("This is a sample");
 }
 source.getHome = function() {
 	//return new ContentPager([], false);
