@@ -1,4 +1,5 @@
-const PLATFORM = "Sample";
+const PLATFORM = "Vanillo";
+//const PLATFORM_CLAIMTYPE = 1234;
 
 var config = {};
 
@@ -49,7 +50,7 @@ source.getHome = function() {
 			name: video.title,
 			thumbnails: video.thumbnail,
 			author: new PlatformAuthorLink(
-				new PlatformID(PLATFORM, video.uploader.id.toString(), config.id, PLATFORM_CLAIMTYPE),
+				new PlatformID(PLATFORM, video.uploader.id.toString(), config.id), /* , PLATFORM_CLAIMTYPE),*/
 				video.uploader.displayName,
 				video.uploader.url,
 				video.uploader.avatar
