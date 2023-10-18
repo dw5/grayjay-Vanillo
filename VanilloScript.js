@@ -10,9 +10,57 @@ source.enable = function(conf, settings, savedState){
 source.getHome = function() {
 	//return new ContentPager([], false);
 	//function getVideoPager(path, params, page) {
-	return getVideoPager('/v1/videos/recommended', {
-		limit: "30"
-	}, 0);
+		const apiUrl = 'https://api.vanillo.tv/v1/videos/recommended?limit=30'
+		const apiResponse = await fetch(apiUrl)
+		const apiData = await apiResponse.json()
+		const videos = apiData.data.videos
+	  
+		function timestamp_to_human(timestamp) {
+		  const current_time = Date.now() / 1000;
+		  var time_diff = current_time - timestamp;
+		  let time_unit = "second";
+	  
+		  if (time_diff >= 31536000) {
+			time_diff = Math.floor(time_diff / 31536000);
+			time_unit = "year";
+		  } else if (time_diff >= 2592000) {
+			time_diff = Math.floor(time_diff / 2592000);
+			time_unit = "month";
+		  } else if (time_diff >= 604800) {
+			time_diff = Math.floor(time_diff / 604800);
+			time_unit = "week";
+		  } else if (time_diff >= 86400) {
+			time_diff = Math.floor(time_diff / 86400);
+			time_unit = "day";
+		  }
+	  
+		  if (time_diff > 1) {
+			time_unit += "s";
+		  }
+	  
+		  return `${time_diff} ${time_unit} ago`;
+		}
+		
+	  const response = []
+	  
+	  for (const video of videos) {
+		return new PlatformVideo({
+			id: new PlatformID(PLATFORM, video.id, config.id),
+			name: video.title,
+			thumbnails: video.thumbnail,
+			author: new PlatformAuthorLink(
+				new PlatformID(PLATFORM, video.uploader.id.toString(), config.id, PLATFORM_CLAIMTYPE),
+				video.uploader.displayName,
+				video.uploader.url,
+				video.uploader.avatar
+			),
+			uploadDate: parseInt(new Date(video.publishedAt).getTime() / 1000),
+			duration: video.duration,
+			viewCount: video.views,
+			url: id,
+			isLive: false,
+		});
+	  }
 };
 
 source.searchSuggestions = function(query) {
@@ -93,31 +141,30 @@ function getVideoPager(path, params, page) {
   
 	const obj = JSON.parse(res.body);
   
-	if (Array.isArray(obj.data)) {
-	  const platformVideos = obj.data.map((v) => ({
-		id: new PlatformID(PLATFORM, v.id, config.id),
-		name: v.title || "",
-		thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
-		author: new PlatformAuthorLink(
-		  new PlatformID(PLATFORM, v.uploader.url, config.id),
-		  v.uploader.displayName,
-		  v.uploader.url,
-		  v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
-		),
-		datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
-		duration: v.duration,
-		viewCount: v.views,
-		url: v.id,
-		isLive: v.live,
-	  }));
-  
-	  return new VideoPager(platformVideos, true);
-	} else {
-	  // Handle the case when obj.data is not an array
-	  log("Invalid data format. Expected an array.");
+	if (!Array.isArray(obj.data)) {
+	  log("Data is not an array");
 	  return new VideoPager([], false);
 	}
-  }  
+  
+	const platformVideos = obj.data.map((v) => ({
+	  id: new PlatformID(PLATFORM, v.id, config.id),
+	  name: v.title || "",
+	  thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
+	  author: new PlatformAuthorLink(
+		new PlatformID(PLATFORM, v.uploader.url, config.id),
+		v.uploader.displayName,
+		v.uploader.url,
+		v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
+	  ),
+	  datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
+	  duration: v.duration,
+	  viewCount: v.views,
+	  url: v.id,
+	  isLive: v.live,
+	}));
+  
+	return new VideoPager(platformVideos, true);
+  }
 
   function buildQuery(params) {
 	let query = "";
