@@ -58,7 +58,7 @@ source.getHome = function() {
 			uploadDate: parseInt(new Date(video.publishedAt).getTime() / 1000),
 			duration: video.duration,
 			viewCount: video.views,
-			url: id,
+			url: video.id,
 			isLive: false,
 		});
 	  }
