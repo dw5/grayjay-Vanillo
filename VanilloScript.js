@@ -131,5 +131,4 @@ function getVideoPager(path, params, page) {
 	return (query && query.length > 0) ? `?${query}` : ""; 
 }
 
-
 log("LOADED");
