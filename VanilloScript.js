@@ -12,7 +12,7 @@ source.getHome = function() {
 	//function getVideoPager(path, params, page) {
 		const apiUrl = 'https://api.vanillo.tv/v1/videos/recommended?limit=30';
 		const apiResponse = http.GET(apiUrl, {});
-		const apiData = JSON.parse(apiResponse);
+		const apiData = JSON.parse(apiResponse.body); // Parse the body of the response	  
 		const videos = apiData.data.videos;
 	  
 		function timestamp_to_human(timestamp) {
