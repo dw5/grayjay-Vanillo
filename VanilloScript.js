@@ -93,25 +93,31 @@ function getVideoPager(path, params, page) {
   
 	const obj = JSON.parse(res.body);
   
-	const platformVideos = obj.data.map((v) => ({
-	  id: new PlatformID(PLATFORM, v.id, config.id),
-	  name: v.title || "",
-	  thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
-	  author: new PlatformAuthorLink(
-		new PlatformID(PLATFORM, v.uploader.url, config.id),
-		v.uploader.displayName,
-		v.uploader.url,
-		v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
-	  ),
-	  datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
-	  duration: v.duration,
-	  viewCount: v.views,
-	  url: v.id,
-	  isLive: v.live,
-	}));
+	if (Array.isArray(obj.data)) {
+	  const platformVideos = obj.data.map((v) => ({
+		id: new PlatformID(PLATFORM, v.id, config.id),
+		name: v.title || "",
+		thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
+		author: new PlatformAuthorLink(
+		  new PlatformID(PLATFORM, v.uploader.url, config.id),
+		  v.uploader.displayName,
+		  v.uploader.url,
+		  v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
+		),
+		datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
+		duration: v.duration,
+		viewCount: v.views,
+		url: v.id,
+		isLive: v.live,
+	  }));
   
-	return new VideoPager(platformVideos, true);
-  }
+	  return new VideoPager(platformVideos, true);
+	} else {
+	  // Handle the case when obj.data is not an array
+	  log("Invalid data format. Expected an array.");
+	  return new VideoPager([], false);
+	}
+  }  
 
   function buildQuery(params) {
 	let query = "";
