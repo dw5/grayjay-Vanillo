@@ -75,7 +75,8 @@ source.getSearchCapabilities = () => {
 	};
 };
 source.search = function (query, type, order, filters) {
-	return new ContentPager([]. false);
+	//return new ContentPager([]. false);
+	throw new ScriptException("This is a sample");
 };
 source.getSearchChannelContentsCapabilities = function () {
 	return {
@@ -118,71 +119,6 @@ source.getComments = function (url) {
 }
 source.getSubComments = function (comment) {
 	throw new ScriptException("This is a sample");
-}
-
-
-
-/* json reader */
-function getVideoPager(path, params, page) {
-	log(`getVideoPager page=${page}`, params);
-  
-	const count = 20;
-	const start = (page ?? 0) * count;
-	params = { ...params, start, count };
-  
-	const url = `${plugin.config.constants.baseUrl}${path}`;
-	const urlWithParams = `${url}${buildQuery(params)}`;
-	log("GET " + urlWithParams);
-	const res = http.GET(urlWithParams, {});
-  
-	if (res.code !== 200) {
-	  log("Failed to get videos", res);
-	  return new VideoPager([], false);
-	}
-  
-	const obj = JSON.parse(res.body);
-  
-	if (!Array.isArray(obj.data)) {
-	  log("Data is not an array");
-	  return new VideoPager([], false);
-	}
-  
-	const platformVideos = obj.data.map((v) => ({
-	  id: new PlatformID(PLATFORM, v.id, config.id),
-	  name: v.title || "",
-	  thumbnails: new Thumbnails([new Thumbnail(`${v.defaultThumbnails[0]}`, 0)]),
-	  author: new PlatformAuthorLink(
-		new PlatformID(PLATFORM, v.uploader.url, config.id),
-		v.uploader.displayName,
-		v.uploader.url,
-		v.uploader.avatar ? `${baseUrl}${v.uploader.avatar}` : ""
-	  ),
-	  datetime: Math.round(new Date(v.publishedAt).getTime() / 1000),
-	  duration: v.duration,
-	  viewCount: v.views,
-	  url: v.id,
-	  isLive: v.live,
-	}));
-  
-	return new VideoPager(platformVideos, true);
-  }
-
-  function buildQuery(params) {
-	let query = "";
-	let first = true;
-	for (const [key, value] of Object.entries(params)) {
-		if (value) {
-			if (first) {
-				first = false;
-			} else {
-				query += "&";
-			}
-
-			query += `${key}=${value}`;
-		}
-	}
-
-	return (query && query.length > 0) ? `?${query}` : ""; 
 }
 
 log("LOADED");
