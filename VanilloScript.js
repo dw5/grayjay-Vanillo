@@ -10,10 +10,10 @@ source.enable = function(conf, settings, savedState){
 source.getHome = function() {
 	//return new ContentPager([], false);
 	//function getVideoPager(path, params, page) {
-		const apiUrl = 'https://api.vanillo.tv/v1/videos/recommended?limit=30'
-		const apiResponse = http.GET(apiUrl)
-		const apiData = apiResponse.json()
-		const videos = apiData.data.videos
+		const apiUrl = 'https://api.vanillo.tv/v1/videos/recommended?limit=30';
+		const apiResponse = http.GET(apiUrl, {});
+		const apiData = apiResponse.json();
+		const videos = apiData.data.videos;
 	  
 		function timestamp_to_human(timestamp) {
 		  const current_time = Date.now() / 1000;
